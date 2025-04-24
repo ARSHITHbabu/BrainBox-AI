@@ -17,6 +17,8 @@ Key Features:
 - Flexible response styles: summary, bullets, or paragraph
 - Modular dual-agent architecture
 - Uses LangGraph for defining AI workflows
+- Easy-to-use CLI interface for querying
+- Open-source, extendable architecture for further research tasks
 
 ---
 
@@ -26,16 +28,16 @@ Key Features:
 - **Web Crawling API:** Tavily
 - **Model Backend:** ChatOllama (Mistral)
 - **Environment Management:** Python-dotenv
-- **Language:** Python
+- **Language:** Python 3.8+
 
 ---
 
 ## Prerequisites
 
 Ensure you have the following installed:
-- Python 3.8+
-- Ollama (running Mistral model)
-- Git
+- Python 3.8 or higher
+- Ollama (Mistral model should be available locally)
+- Git CLI
 
 ---
 
@@ -101,12 +103,37 @@ You'll be prompted to enter your question and choose a response style (`summary`
 
 ---
 
-## LangGraph Flow
+## LangGraph Flow Diagram
 
-LangGraph is used to define a multi-step workflow:
-- **Input** → **Research Agent** → **Draft Agent** → **Output**
+```text
+[Input Question]
+      ↓
+[Research Agent - Tavily Search]
+      ↓
+[Draft Agent - LLM Answer Drafting]
+      ↓
+[Final Output: Styled Answer + Sources]
+```
 
-The state is managed and passed automatically across the graph using LangGraph’s `StateGraph`.
+LangGraph manages the transitions and state between agents using `StateGraph`, making the system composable and scalable.
+
+---
+
+## Sample Output
+
+```bash
+Enter your question: What are the latest advancements in quantum computing?
+Enter response style: summary
+
+--- Final Answer ---
+1. Improved qubit stability and error correction...
+2. New quantum algorithms for cryptography and ML...
+3. Practical use cases over benchmark focus...
+
+Sources:
+- Quantum Update 2024: https://example.com/quantum1
+- Research Insights: https://example.com/quantum2
+```
 
 ---
 
@@ -116,6 +143,8 @@ The state is managed and passed automatically across the graph using LangGraph�
 🔹 Extend to multi-agent reasoning chains  
 🔹 Add vector DB for context memory  
 🔹 Support more customizable prompt templates  
+🔹 Add GUI interface using Streamlit or Gradio  
+🔹 Deploy as an API microservice  
 
 ---
 
@@ -124,7 +153,3 @@ The state is managed and passed automatically across the graph using LangGraph�
 This project is licensed under the **MIT License**.
 
 ---
-
-## Author
-Created as part of a qualifying assignment submission for advanced AI agent-based systems.
-Feel free to fork and build upon it!
